@@ -24,7 +24,14 @@ app.get("/blog/:artigo?", function(req,res) {
 
 
 app.get("/canal/youtube", function(req,res) {
-    res.send("<h1>Bem vindo ao meu canal!</h1>")
+    let canal = req.query["canal"];
+
+    if(canal) {
+        res.send(`Bem vindo ao canal ${canal}`);
+    }else {
+        res.send("<h1>Bem vindo ao youtube!</h1>")
+
+    }
 })
 
 app.get("/ola/:nome", function(req,res){
@@ -37,7 +44,7 @@ app.get("/ola/:nome/:empresa", function(req,res){
     //RES => RESPOSTA ENVIADA AO USUÁRIO
     res.send(`<h1>Olá! ${req.params.nome}, da empresa ${req.params.empresa}<h1>`);
 })
-
+ 
 app.listen(8181,function(error){
     if(error) {
         console.log("Ocorreu um erro!", error);
