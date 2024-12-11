@@ -181,3 +181,32 @@ secretWord = "cheeseburgerpizzabagels"
 /*
 
 */
+const readline = require('readline');
+const fs = require('fs');
+
+
+const myInterface = readline.createInterface({
+  input: fs.createReadStream('shoppingList.txt')
+});
+
+const printData = (data) => {
+  console.log(`Item: ${data}`);
+}
+
+myInterface.on('line', printData);
+
+const readline = require('readline');
+const fs = require('fs');
+
+const fileStream = fs.createWriteStream('shoppingResults.txt');
+
+const transformData = (line) => {
+  fileStream.write(`They were out of: ${line}\n`);
+}
+
+myInterface.on('line', transformData);
+
+
+setImmediate(() => {
+  console.log('I got called right away!');
+})
